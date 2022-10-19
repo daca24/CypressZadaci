@@ -1,0 +1,15 @@
+{
+  "name": "cypresscas1",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "cypress": "npx cypress open"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cypress": "^10.10.0"
+  },
+  "keywords": [],
+  "description": ""
+}
