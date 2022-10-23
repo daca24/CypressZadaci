@@ -1,0 +1,22 @@
+{
+    "login" : {
+        "emailInput" : "#email",
+        "passwordInput" : "#password",
+        "submitButton" : "button[type='submit']"
+    },
+
+    "header" : {
+        "loginButton" : "a[href='/login']",
+        "logoutButton" : "a[role='button ']"
+    },
+
+    "register" : {
+        "emailInput" : "#email",
+        "passwordInput" : "#password",
+        "passwordConfirmation" : "#password-confirmation",
+        "firstName" : "#first-name",
+        "lastName" : "#last-name",
+        "checkbox" : "input[type='checkbox']",
+        "submitButton" : "button[type='submit']"
+    }
+}
