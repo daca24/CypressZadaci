@@ -1,0 +1,19 @@
+{
+    "headers" : {
+        "allGalleries" : "All Galleries",
+        "login" : "Please login"
+    },
+
+    "errors" : {
+        "noTermsAccepted" : "The terms and conditions must be accepted.",
+        "passConfirmNotMatch" : "The password confirmation does not match.",
+        "passNoDigits" : "The password format is invalid.",
+        "passLessThanEight" : "The password must be at least 8 characters.",
+        "invalidEmail" : "The email must be a valid email address.",
+        "titleLessThanTwo" : "The title must be at least 2 characters.",
+        "titleMoreThan255" : "The title may not be greater than 255 characters.",
+        "descriptionMoreThan1000" : "The description may not be greater than 1000 characters.",
+        "wrongImageFormat" : "Wrong format of image",
+        "badCredentials" : "Bad Credentials"
+    }
+}
