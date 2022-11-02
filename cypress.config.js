@@ -8,6 +8,11 @@ module.exports = defineConfig({
       // implement node event listeners here
 
     },
+    env: {
+      validEmail: "nekimail@gmail.com",
+      validPassword: "nekipassword1"
+    },
+
     baseUrl: 'https://gallery-app.vivifyideas.com',
     //watchForFileChanges: false
   },

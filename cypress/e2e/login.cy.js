@@ -20,8 +20,8 @@ describe('Login test cases', () => {
     // })
 
     it('Login with valid data and logout', () => {
-        cy.get(locators.login.emailInput).type('ndaca89@gmail.com')
-        cy.get(locators.login.passwordInput).type('danijel17')
+        cy.get(locators.login.emailInput).type('nekimail@gmail.com')
+        cy.get(locators.login.passwordInput).type('nekipassword1')
         // cy.contains('Submit').click()
         // cy.get("button[type='submit']").click()
         cy.get(locators.login.submitButton).click()
@@ -41,31 +41,31 @@ describe('Login test cases', () => {
     })
 
     it('Login with invalid email - missing @', () => {
-        cy.get(locators.login.emailInput).type('ndaca89gmail.com')
-        cy.get(locators.login.passwordInput).type('danijel17')
+        cy.get(locators.login.emailInput).type('nekimailgmail.com')
+        cy.get(locators.login.passwordInput).type('nekipassword1')
         cy.get(locators.login.submitButton).click()
     })
 
     it('Login with invalid email - missing .com', () => {
-        cy.get(locators.login.emailInput).clear().type('ndaca89@gmail')
-        cy.get(locators.login.passwordInput).clear().type('danijel17')
+        cy.get(locators.login.emailInput).clear().type('nekimail@gmail')
+        cy.get(locators.login.passwordInput).clear().type('nekipassword1')
         cy.get(locators.login.submitButton).click()
     })
 
     it('Login with invalid email - missing username', () => {
         cy.get(locators.login.emailInput).clear().type('@gmail.com')
-        cy.get(locators.login.passwordInput).clear().type('danijel17')
+        cy.get(locators.login.passwordInput).clear().type('nekipassword1')
         cy.get(locators.login.submitButton).click()
     })
 
     it('Login with incorrect password', () => {
-        cy.get(locators.login.emailInput).clear().type('ndaca89@gmail.com')
-        cy.get(locators.login.passwordInput).clear().type('danijel1')
+        cy.get(locators.login.emailInput).clear().type('nekimail@gmail.com')
+        cy.get(locators.login.passwordInput).clear().type('nekipassword123')
         cy.get(locators.login.submitButton).click()
     })
 
     it('Login without password', () => {
-        cy.get(locators.login.emailInput).clear().type('ndaca89@gmail.com')
+        cy.get(locators.login.emailInput).clear().type('nekimail@gmail.com')
         cy.get(locators.login.passwordInput).clear()
         cy.get(locators.login.submitButton).click()
     })

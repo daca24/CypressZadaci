@@ -5,19 +5,32 @@ const { register } = require('../page_objects/register')
 import data from '../fixtures/data.json'
 
 describe('Register test cases', () => {
+    let firstName = ''
     beforeEach('Go to register page', () => {
+        firstName = faker.name.firstName()
         cy.visit('/register')
         cy.url().should('contain', '/register')
     })
 
     it('Register with valid data', () => {
-        register.register(faker.name.firstName(), faker.name.lastName(), faker.internet.email(), 'pass1234', 'pass1234')
+        cy.intercept('POST','https://gallery-api.vivifyideas.com/api/auth/register').as('validRegister')
+        register.register(firstName, faker.name.lastName(), faker.internet.email(), 'pass1234', 'pass1234')
         general.headerTitle.should('have.text', data.headers.allGalleries)
+        cy.wait('@validRegister').then(intercept => {
+            console.log(intercept)
+            expect(intercept.response.statusCode).to.eq(200)
+            expect(intercept.response.statusMessage).to.eq('OK')
+            expect(intercept.request.body.first_name).to.eq(firstName)
+        })
     })
 
     it('Register without first name', () => {
+        // cy.intercept('POST','https://gallery-api.vivifyideas.com/api/auth/register').as('noNameReg')
         register.register('{backspace}', faker.name.lastName(), faker.internet.email(), 'pass1234', 'pass1234')
         cy.url().should('contain', '/register')
+        // cy.wait('@noNameReg').then(intercept => {
+        //     console.log(intercept)
+        // })
     })
 
     it('Register without last name', () => {
@@ -41,11 +54,18 @@ describe('Register test cases', () => {
     })
 
     it('Register without accepting terms and conditions', () => {
+        cy.intercept('POST','https://gallery-api.vivifyideas.com/api/auth/register').as('noTerms')
         register.registerNoCheck(faker.name.firstName(), faker.name.lastName(), faker.internet.email(), 'pass1234', 'pass1234')
         general.errorMessage.should('be.visible')
         .and('have.text', data.errors.noTermsAccepted)
         .and('have.css', 'background-color', 'rgb(248, 215, 218)')
         .and('have.css', 'color', 'rgb(114, 28, 36)')
+        cy.wait('@noTerms').then(intercept => {
+            // console.log(intercept)
+            expect(intercept.response.statusCode).to.eq(422)
+            expect(intercept.response.statusMessage).to.eq('Unprocessable Entity')
+            expect(intercept.response.body.message).to.eq('The given data was invalid.')
+        })
     })
 
     it('Register - password and confirmed password do not match', () => {
